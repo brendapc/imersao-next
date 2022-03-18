@@ -1,5 +1,6 @@
 import appConfig from '../config.json'
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
+import { useState } from 'react';
 
 function GlobalStyle(){
     return (
@@ -62,7 +63,7 @@ function Titulo(props){
 }
 */
 export default function PaginaInicial() {
-    const username = 'brendapc';
+    const [username, setUsername] = useState('brendapc');
   
     return (
       <>
@@ -92,6 +93,9 @@ export default function PaginaInicial() {
           >
             {/* Formulário */}
             <Box
+              onSubmit={(e)=>{
+                e.preventDefault()
+              }}
               as="form"
               styleSheet={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
@@ -104,6 +108,8 @@ export default function PaginaInicial() {
               </Text>
   
               <TextField
+                value={username} 
+                onChange={(e)=> setUsername(e.target.value)} 
                 fullWidth
                 textFieldColors={{
                   neutral: {
